@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+       <style>
+        body {
+            background: rgb(0, 0, 0, 0.7);
+        } 
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .box-stuff{
+            width: 1000px;
+            height: 100vh;
+            background: #fff;
+            margin: auto;
+            border-radius: 5px;
+        }
+        .display{
+            width: 970px;
+            height: 20vh;
+            padding: 10px;
+            padding-top: 5px;
+            border: 2px double black;
+            border-radius: 5px;
+            margin: auto;
+        }
+        .stuff{
+            width: 970px;
+            height: 78vh;
+            padding: 10px;
+            margin: auto;
+            background: #858585;
+            border-radius: 5px;
+        }
+        .stuff .box-stuff{
+            width: 450px;
+            height: 75vh;
+            margin-left: 0;
+        }
+        .stuff .box-display .display-stuff{
+            width: 450px;
+            height: 100px;
+            background: red;
+            margin-right: 0;
+            position: relative;
+        }
+        .stuff .container-stuff{
+            width: fit-content;
+            height: fit-content;
+            display: flex;
+            padding: 10px;
+            gap: 20px;
+        }
+        .stuff .container-stuff .item{
+            width: 70px;
+            height: 70px;
+            background: #fff;
+            border: 1px dotted black;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .display-stuff{
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+        }
+    </style>
+    
+</head>
+<body>
+
+     <div class="box-stuff">
+        <div class="display"></div>
+        <div class="stuff">
+            <div class="box-stuff">
+                <div class="container-stuff">
+                    <div class="item" >kopikap 5000</div>
+                    <div class="item" >okidring 5000</div>
+                    <div class="item" >teh eco 5000</div>
+                    <div class="item" >monti 5000</div>
+                    <div class="item" >panter 5000</div>
+                </div>
+                <div class="container-stuff">
+                    <div class="item" >ultra 10000 </div>
+                    <div class="item" >cocacola 10000</div>
+                    <div class="item" >sprite 10000</div>
+                    <div class="item" >mizon 10000</div>
+                    <div class="item" >susukurma 10000</div>
+                </div>
+                <div class="container-stuff">
+                    <div class="item" >nasKun 20000</div>
+                    <div class="item" >nasPad 20000</div>
+                    <div class="item" >nasCam 20000</div>
+                    <div class="item" >nasKam 20000</div>
+                    <div class="item" >nasSam 20000</div>
+                </div>
+                <div class="container-stuff">
+                    <div class="item" >steakKam 100000</div>
+                    <div class="item" >steakSap 100000</div>
+                    <div class="item" >steakDom 100000</div>
+                    <div class="item" >steakKel 100000</div>
+                    <div class="item" >steakUnt 100000</div>
+                </div>
+                <div class="container-stuff">
+                    <div class="item" >sabun 15000</div>
+                    <div class="item" >Shampo 15000</div>
+                    <div class="item" >gayung 15000</div>
+                    <div class="item" >ember 15000</div>
+                    <div class="item" >sikat 15000</div>
+                </div>
+            </div>
+        </div>
+        </div>   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    <script defer>  
+        document.addEventListener("DOMContentLoaded", function() {
+            let keranjangBelanja = [];
+
+            function main() {
+                alert("Selamat datang di Sistem Kasir!");
+
+                while (true) {
+                    let pilihan = prompt("Pilih menu:\n1. Tambahkan barang\n2. Hitung total\n3. Keluar\nMasukkan nomor pilihan:");
+
+                    if (pilihan === "1") {
+                        let namaBarang = prompt("Masukkan nama barang:");
+                        let brpBarang = parseInt(prompt("Berapa barang yang ingin dibeli?"));
+                        let hargaBarang = parseFloat(prompt("Masukkan harga satuan barang:"));
+
+                        if (!isNaN(hargaBarang) && !isNaN(brpBarang)) {
+                            let totalHargaBarangBaru = hargaBarang * brpBarang;
+                            tambahBarang(namaBarang, hargaBarang, brpBarang);
+                            alert(`Barang ${namaBarang} berhasil ditambahkan. Total harga untuk barang ini: Rp${totalHargaBarangBaru}`);
+                        } else {
+                            alert("Harga atau jumlah barang tidak valid!");
+                        }
+
+                    } else if (pilihan === "2") {
+                        alert(`Total harga semua barang di keranjang: Rp${hitungTotal()}`);
+                        tampilkanKeranjang(0);
+
+                    } else if (pilihan === "3") {
+                        keluar();
+                        break;
+
+                    } else {
+                        alert("Pilihan tidak valid, coba lagi.");
+                    }
+                }
+            }
+
+            function tambahBarang(nama, harga, jumlah) {
+                keranjangBelanja.push({ nama: nama, harga: harga, jumlah: jumlah });
+            }
+
+            function hitungTotal() {
+                let total = 0;
+                for (let item of keranjangBelanja) {
+                    total += item.harga * item.jumlah; 
+                }
+                return total;
+            }
+
+            function tampilkanKeranjang(index) {
+                if (index >= keranjangBelanja.length) return;
+                let item = keranjangBelanja[index];
+                alert(`${index + 1}. ${item.nama} - ${item.jumlah} pcs - Harga Satuan: Rp${item.harga} - Total: Rp${item.harga * item.jumlah}`);
+                tampilkanKeranjang(index + 1);
+            }
+
+            const keluar = function() {
+                alert("Terima kasih telah menggunakan Sistem Kasir.");
+            };
+
+            main();
+        });
+    </script>
+</body>
+</html>
+
+<!-- parseFloat === untuk mengubah string menjadi intijer -->
